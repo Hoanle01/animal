@@ -1,4 +1,5 @@
 
+const { Op } = require('sequelize')
 const {Categories}=require('../../models')
 
 const cretaeCategories=async(req,res)=>{
@@ -14,7 +15,7 @@ const cretaeCategories=async(req,res)=>{
      }
    
 }
-const getAllCategories=async (req,res)=>{
+const getAllCategories=async(req,res)=>{
     //láy sau giấu ?
     const {name}=req.query
     try {
@@ -26,7 +27,11 @@ const getAllCategories=async (req,res)=>{
                     }
                 }
             })
-        }else{
+        res.status(200).send(categoryList)
+
+
+        }
+        else{
              const categoryList=await Categories.findAll()
         res.status(200).send(categoryList)
         }

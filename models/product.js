@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({Production,Categories,IndexCart,Favorite,OrderDetail}) {
+    static associate({Production,Categories,Favorite,OrderDetail}) {
       // define association here
       this.belongsTo(Categories,{foreignKey:"index_categories",as:"category"})
       this.belongsTo(Production,{foreignKey:"index_production",as:"production"})
-     this.hasMany(Favorite,{foreignKey:"index_product"})
-      this.hasMany(IndexCart,{foreignKey:"index_product"})
-      this.hasMany(OrderDetail,{foreignKey:"index_product"})
+     this.hasMany(Favorite,{foreignKey:"index_product",as:"product"})
+     
+      this.hasMany(OrderDetail,{foreignKey:"index_product",as:"product1"})
 
 
     }
@@ -26,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     discount:DataTypes.STRING,
     feature:DataTypes.STRING,
+    content:DataTypes.STRING,
+ 
     description: DataTypes.STRING
   }, {
     sequelize,

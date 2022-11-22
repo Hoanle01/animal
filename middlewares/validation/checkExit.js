@@ -1,4 +1,5 @@
-const {User} = require("../../models")
+const { Op } = require("sequelize")
+const {User,Favorite} = require("../../models")
 
 const checkExits=(Model)=>{
 return async(req,res,next)=>{
@@ -33,7 +34,36 @@ const checkExitsEmail=async(req,res,next)=>{
     
    
     }
+    const checkExitsFavorite=async (req,res,next)=>{
+   
+        const { index_product } = req.body
+console.log(index_product)
+        try {
+            
+      
+        const existFavorite=await Favorite.findAll({
+            where:{
+                index_product:index_product
+            }
+        })
+
+       
+        if(existFavorite!=null){
+            console.log("123ed")
+            res.status(500).send({ data: null, status: 500, success: false })
+
+        }
+      
+           next()
+       
+      } catch (error) {
+            
+        }
+   
+    }
+    
 module.exports={
     checkExits,
-     checkExitsEmail
+     checkExitsEmail,
+     checkExitsFavorite
 }
