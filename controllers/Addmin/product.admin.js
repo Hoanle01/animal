@@ -16,7 +16,7 @@ const createProduct = async (req, res) => {
 
 
   try {
-     const newProduct = await Product.create({ name, price, content,image: urlImage, description, index_categories, feature, index_production, discount, intendedFor})
+     const newProduct = await Product.create({ name, price, content,image: urlImage, description, index_categories, feature, index_production, discount})
    console.log(newProduct)
   res.status(201).send({success:true,status:200})
   } catch (error) {
@@ -158,6 +158,9 @@ const getAllProduct = async (req, res) => {
     } catch (error) {
       res.status(500).send(error.message)
     }
+  }
+  const dashBoard=(req,res)=>{
+    
   }
   module.exports={
     getAllProduct,

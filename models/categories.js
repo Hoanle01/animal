@@ -20,13 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       validate:{
         notEmpty:true,
         //len:[3,30]
-        checklen(value){
-          if(value.length>=5 && value.length<=100){
-            return true;
-          }else{
-            throw new Error('độ dài phải từ 5-10')
-          }
-        }
+       
       }
     }
   }, {

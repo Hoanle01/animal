@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     feature:DataTypes.STRING,
     content:DataTypes.STRING,
  
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+
   }, {
     sequelize,
     modelName: 'Product',

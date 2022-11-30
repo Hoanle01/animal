@@ -8,7 +8,7 @@ const {Categories} = require("../models")
 const categoriesRouter=express.Router()
 
 
-categoriesRouter.post("/",authenticate,cretaeCategories)
+categoriesRouter.post("/",cretaeCategories)
 categoriesRouter.get("/", getAllCategories)
 categoriesRouter.get("/:id", getDetailCategories),
 categoriesRouter.put("/:id",checkExits(Categories), updateCategories),

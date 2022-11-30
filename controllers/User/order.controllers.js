@@ -6,9 +6,9 @@ const orderdetail = require('../../models/orderdetail')
 const cretaeOrders = async (req, res) => {
 
     const { status, total, products, address_id } = req.body
-    console.log(status)
+
     const { user } = req
-    console.log(user.id)
+   
 
     try {
 
@@ -343,14 +343,26 @@ const updateOrderCancel = async (req, res) => {
 const deleteOrder = async (req, res) => {
     const { id } = req.params
     try {
-        await Order.destroy({
+        const orderDetail=await Order.findOne({
+            where:{
+               id
+                
+            }
+        })
+      if(orderDetail.status===3||orderDetail.status===4){
+       res.status(500).send({status:500,success:false})
+      }
+      else{
+         await Order.destroy({
             where: {
                 id
             }
         })
-        res.status(200).send("xóa thành công")
+        res.status(200).send({status:200,success:true})
+      }
+       
     } catch ({ error }) {
-        res.status(500).send(error)
+        res.status(500).send(error.message)
 
     }
 }
